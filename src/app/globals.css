@@ -224,6 +224,12 @@ button {
   direction: rtl;
 }
 
+input[type="tel"],
+input[type="number"] {
+  direction: ltr !important;
+  text-align: right !important;
+}
+
 .form-input:focus {
   border-color: var(--color-brand);
   box-shadow: 0 0 0 3px rgba(26, 95, 156, 0.12);
