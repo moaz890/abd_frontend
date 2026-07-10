@@ -39,7 +39,7 @@ function deepMerge<T extends Record<string, unknown>>(base: T, override: Partial
 
 // ── fetchSiteContent ──────────────────────────────────────────────────────────
 export async function fetchSiteContent(): Promise<SiteContent> {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000';
+  const apiUrl = (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000').replace(/\/$/, '');
 
   try {
     const res = await fetch(`${apiUrl}/api/content`, {

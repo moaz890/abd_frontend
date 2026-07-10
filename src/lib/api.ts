@@ -7,7 +7,7 @@
 import type { Lead, LeadStatus, PaginatedLeads, SiteContent } from './types';
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000';
+  (process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:5000').replace(/\/$/, '');
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 function getToken(): string | null {
