@@ -207,8 +207,10 @@ export default function ContentPage() {
       // Trigger revalidation
       await fetch('/api/revalidate', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ secret: process.env.NEXT_PUBLIC_REVALIDATE_SECRET ?? '' }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       }).catch(() => {});
       setToast(`تم حفظ التغييرات بنجاح ✅`);
     } catch {
