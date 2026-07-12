@@ -34,7 +34,8 @@ export default async function HomePage() {
 
         <LeadForm
           section={content.leadFormSection}
-          labels={content.formLabels}
+          whatsapp={content.footer?.whatsapp ?? content.successPage?.whatsapp ?? '966500000000'}
+          whatsappMessage={content.successPage?.whatsappMessage}
         />
 
         <Testimonials testimonials={content.testimonials} />
