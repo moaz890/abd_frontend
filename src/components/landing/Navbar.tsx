@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackSnapEvent } from '@/lib/snapchat';
+import { SNAPCHAT_ELIGIBILITY_CTA_EVENT } from '@/lib/snapchatEvents';
 
 interface NavbarProps {
   logoUrl: string;
@@ -9,6 +11,7 @@ interface NavbarProps {
 
 export default function Navbar({ logoUrl }: NavbarProps) {
   const scrollToForm = () => {
+    trackSnapEvent(SNAPCHAT_ELIGIBILITY_CTA_EVENT);
     document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 

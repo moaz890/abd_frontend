@@ -1,5 +1,10 @@
 import { LeadFormSectionContent } from '@/lib/types';
 import { phoneToWA } from '@/lib/auth';
+import TrackedLink from '@/components/analytics/TrackedLink';
+import {
+  SNAPCHAT_WHATSAPP_EVENT,
+  SNAPCHAT_WHATSAPP_EVENT_DATA,
+} from '@/lib/snapchatEvents';
 import { MessageCircle } from 'lucide-react';
 
 interface LeadFormProps {
@@ -45,10 +50,12 @@ export default function LeadForm({ section, whatsapp, whatsappMessage }: LeadFor
             {section.consentText}
           </p>
 
-          <a
+          <TrackedLink
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
+            snapEvent={SNAPCHAT_WHATSAPP_EVENT}
+            snapEventData={SNAPCHAT_WHATSAPP_EVENT_DATA}
             className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-2xl text-white text-xl font-bold shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
             style={{
               background: '#25D366',
@@ -57,7 +64,7 @@ export default function LeadForm({ section, whatsapp, whatsappMessage }: LeadFor
           >
             <MessageCircle size={24} />
             تحقق من اهليتك
-          </a>
+          </TrackedLink>
         </div>
       </div>
     </section>

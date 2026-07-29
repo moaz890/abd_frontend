@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { ChevronDown } from 'lucide-react';
 import { HeroContent } from '@/lib/types';
+import { trackSnapEvent } from '@/lib/snapchat';
+import { SNAPCHAT_ELIGIBILITY_CTA_EVENT } from '@/lib/snapchatEvents';
 
 interface HeroProps {
   hero: HeroContent;
@@ -10,6 +12,7 @@ interface HeroProps {
 
 export default function Hero({ hero }: HeroProps) {
   const scrollToForm = () => {
+    trackSnapEvent(SNAPCHAT_ELIGIBILITY_CTA_EVENT);
     document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 

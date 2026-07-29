@@ -1,5 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import TrackedLink from '@/components/analytics/TrackedLink';
+import {
+  SNAPCHAT_WHATSAPP_EVENT,
+  SNAPCHAT_WHATSAPP_EVENT_DATA,
+} from '@/lib/snapchatEvents';
 import { FooterContent } from '@/lib/types';
 
 interface FooterProps {
@@ -134,11 +139,17 @@ export default function Footer({ footer, logoUrl }: FooterProps) {
             </div>
             <div className="mt-4 space-y-2 text-sm text-gray-400">
               {footer.whatsapp && (
-                <a href={`https://wa.me/${footer.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-end gap-2 hover:text-green-400 transition-colors">
+                <TrackedLink
+                  href={`https://wa.me/${footer.whatsapp.replace(/\D/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  snapEvent={SNAPCHAT_WHATSAPP_EVENT}
+                  snapEventData={SNAPCHAT_WHATSAPP_EVENT_DATA}
+                  className="flex items-center justify-end gap-2 hover:text-green-400 transition-colors"
+                >
                   <span>راسلنا عن طريق الواتساب</span>
                   <span className="text-green-500">●</span>
-                </a>
+                </TrackedLink>
               )}
               {footer.email && (
                 <a href={`mailto:${footer.email}`}
@@ -150,19 +161,35 @@ export default function Footer({ footer, logoUrl }: FooterProps) {
             </div>
             {/* Social icons */}
             <div className="flex flex-wrap gap-3 mt-6 justify-end">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  title={s.label}
-                  className={`w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white ${s.bg} transition-all duration-200 hover:scale-110`}
-                >
-                  {s.icon}
-                </a>
-              ))}
+              {socials.map((s) =>
+                s.label === 'واتساب' ? (
+                  <TrackedLink
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    title={s.label}
+                    snapEvent={SNAPCHAT_WHATSAPP_EVENT}
+                    snapEventData={SNAPCHAT_WHATSAPP_EVENT_DATA}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white ${s.bg} transition-all duration-200 hover:scale-110`}
+                  >
+                    {s.icon}
+                  </TrackedLink>
+                ) : (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    title={s.label}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center bg-white/10 text-white ${s.bg} transition-all duration-200 hover:scale-110`}
+                  >
+                    {s.icon}
+                  </a>
+                ),
+              )}
             </div>
           </div>
         </div>
