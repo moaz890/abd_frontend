@@ -21,10 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl">
-      <body>
+      <head>
         <SnapchatPixel />
-        {children}
-      </body>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
